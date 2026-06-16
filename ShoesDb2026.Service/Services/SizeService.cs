@@ -106,7 +106,7 @@ namespace ShoesDb2026.Service.Services
             }
             try
             {
-                _uow.Sizes.Update(size);
+                _uow.Sizes.Update(size, size.SizeId);
                 _uow.Save();
                 return Result.Success();
             }

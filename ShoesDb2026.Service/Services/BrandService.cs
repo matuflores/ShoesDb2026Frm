@@ -103,7 +103,7 @@ namespace ShoesDb2026.Service.Services
             }
             try
             {
-                _uow.Brands.Update(brand);
+                _uow.Brands.Update(brand, brand.BrandId);
                 _uow.Save();
                 return Result.Success();
             }

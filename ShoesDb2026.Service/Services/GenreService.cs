@@ -103,7 +103,7 @@ namespace ShoesDb2026.Service.Services
             }
             try
             {
-                _uow.Genres.Update(genre);
+                _uow.Genres.Update(genre, genre.GenreId);
                 _uow.Save();
                 return Result.Success();
             }
