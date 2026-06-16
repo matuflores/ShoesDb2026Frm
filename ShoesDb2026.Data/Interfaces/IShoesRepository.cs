@@ -5,14 +5,9 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Interfaces
 {
-    public interface IShoesRepository
+    public interface IShoesRepository:IRepositorioGenerico<Shoe>
     {
-        List<Shoe> GetAll();
-        IQueryable<Shoe> Query();
-        Shoe? GetById(int id);
-        void Delete(int id);
-        void Update(Shoe shoe);
-        void Add(Shoe shoe);
+        
         bool ExistSameName(string model, int brandId,int sizeId, int? shoeId = null);
 
         List<Shoe> GetByBrand(int brandId);

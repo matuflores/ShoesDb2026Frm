@@ -8,24 +8,28 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Repositories
 {
-    public class ShoeRepository : IShoesRepository
+    public class ShoeRepository :RepositorioGenerico<Shoe>, IShoesRepository
     {
-        private readonly ShoesDb2026DbContext _context;
-        public ShoeRepository(ShoesDb2026DbContext context)
+        public ShoeRepository(ShoesDb2026DbContext context) : base(context)
         {
-            _context = context;
-        }
-        public void Add(Shoe shoe)
-        {
-            _context.Shoes.Add(shoe);
         }
 
-        public void Delete(int id)
-        {
-            var shoe = _context.Shoes.Find(id);
-            if(shoe == null) return;
-            _context.Shoes.Remove(shoe);
-        }
+        //private readonly ShoesDb2026DbContext _context;
+        //public ShoeRepository(ShoesDb2026DbContext context)
+        //{
+        //    _context = context;
+        //}
+        //public void Add(Shoe shoe)
+        //{
+        //    _context.Shoes.Add(shoe);
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    var shoe = _context.Shoes.Find(id);
+        //    if(shoe == null) return;
+        //    _context.Shoes.Remove(shoe);
+        //}
 
         public bool ExistSameName(string model, int brandId, int sizeId, int? shoeId = null)
         {
@@ -35,16 +39,16 @@ namespace ShoesDb2026.Data.Repositories
             (shoeId==null || s.ShoeId != shoeId));
         }
 
-        public List<Shoe> GetAll()
-        {
-            return _context.Shoes
-                .Include(s => s.Brand)
-                .Include(s => s.Sport)
-                .Include(s => s.Genre)
-                .Include(s => s.Size)
-                .Where(s => s.Active)
-                .AsNoTracking().ToList();
-        }
+        //public List<Shoe> GetAll()
+        //{
+        //    return _context.Shoes
+        //        .Include(s => s.Brand)
+        //        .Include(s => s.Sport)
+        //        .Include(s => s.Genre)
+        //        .Include(s => s.Size)
+        //        .Where(s => s.Active)
+        //        .AsNoTracking().ToList();
+        //}
 
         public List<Shoe> GetByBrand(int brandId)
         {
@@ -57,14 +61,14 @@ namespace ShoesDb2026.Data.Repositories
                     .ToList();
         }
 
-        public Shoe? GetById(int id)
-        {
-            return _context.Shoes
-                .Include(s => s.Brand)
-                .Include(s => s.Sport)
-                .Include(s => s.Genre)
-                .FirstOrDefault(s => s.ShoeId == id);
-        }
+        //public Shoe? GetById(int id)
+        //{
+        //    return _context.Shoes
+        //        .Include(s => s.Brand)
+        //        .Include(s => s.Sport)
+        //        .Include(s => s.Genre)
+        //        .FirstOrDefault(s => s.ShoeId == id);
+        //}
 
         public List<Shoe> GetBySize(int sizeId)
         {
@@ -124,19 +128,19 @@ namespace ShoesDb2026.Data.Repositories
                     .ToList(); 
         }
 
-        public IQueryable<Shoe> Query()
-        {
-            return _context.Shoes
-                .Include(s => s.Brand)
-                .Include(s => s.Genre)
-                .Include(s => s.Sport)
-                .AsNoTracking()
-                .AsQueryable();
-        }
+        //public IQueryable<Shoe> Query()
+        //{
+        //    return _context.Shoes
+        //        .Include(s => s.Brand)
+        //        .Include(s => s.Genre)
+        //        .Include(s => s.Sport)
+        //        .AsNoTracking()
+        //        .AsQueryable();
+        //}
 
-        public void Update(Shoe shoe)
-        {
-            _context.Shoes.Update(shoe);
-        }
+        //public void Update(Shoe shoe)
+        //{
+        //    _context.Shoes.Update(shoe);
+        //}
     }
 }

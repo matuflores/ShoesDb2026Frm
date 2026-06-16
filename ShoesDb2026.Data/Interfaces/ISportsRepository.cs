@@ -5,14 +5,8 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Interfaces
 {
-    public interface ISportsRepository
+    public interface ISportsRepository:IRepositorioGenerico<Sport>
     {
-        List<Sport> GetAll();
-        IQueryable<Sport> Query();
-        Sport? GetById(int id);
-        void Delete(int id);
-        void Update(Sport sport);
-        void Add(Sport sport);
         bool ExistSameName(string sportName, int? sportId = null);
 
         bool HasShoes(int sportId);
