@@ -15,12 +15,20 @@ namespace ShoesDb2026.Windows
             services.AddAplicationServices();
 
             //aca van los servicios de los frm
+            //services.AddTransient<frmLogin>();
+            //services.AddTransient<frmPrincipal>();
 
-
+            var formularios=typeof(Program).Assembly.GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(Form)) && !t.IsAbstract).ToList();
+            foreach (var frm in formularios) 
+            { 
+                services.AddTransient(frm);
+            }
+            var provider = services.BuildServiceProvider();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmLogin());
+            Application.Run(provider.GetRequiredService<frmLogin>());
         }
     }
 }

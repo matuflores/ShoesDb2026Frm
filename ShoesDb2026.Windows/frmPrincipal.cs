@@ -8,16 +8,11 @@ using System.Windows.Forms;
 
 namespace ShoesDb2026.Windows
 {
-    public partial class frmLogin : Form
+    public partial class frmPrincipal : Form
     {
-        public frmLogin()
+        public frmPrincipal()
         {
             InitializeComponent();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close(); 
         }
     }
 }
