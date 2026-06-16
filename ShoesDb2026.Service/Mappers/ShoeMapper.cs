@@ -62,7 +62,8 @@ namespace ShoesDb2026.Service.Mappers
                 BrandId = shoe.BrandId,
                 SportId = shoe.SportId,
                 GenreId = shoe.GenreId,
-                SizeId = shoe.SizeId
+                SizeId = shoe.SizeId,
+                RowVersion = shoe.RowVersion
             };
         }
     }

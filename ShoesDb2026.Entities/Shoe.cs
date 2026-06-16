@@ -20,5 +20,6 @@ namespace ShoesDb2026.Entities
         public Genre Genre { get; set; } = null!;
         public int SizeId { get; set; }
         public Size Size { get; set; } = null!;
+        public byte[] RowVersion { get; set; } = null!;
     }
 }

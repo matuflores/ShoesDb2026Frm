@@ -17,6 +17,8 @@ namespace ShoesDb2026.Data.Configurations
                 .HasMaxLength(50);
 
             builder.HasIndex(b => b.BrandName).IsUnique();
+
+            builder.Property(b => b.RowVersion).IsRowVersion();
         }
     }
 }

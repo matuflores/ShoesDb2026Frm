@@ -31,7 +31,8 @@ namespace ShoesDb2026.Service.Mappers
             {
                 BrandId = brand.BrandId,
                 BrandName = brand.BrandName,
-                ImageUrl = brand.ImageUrl
+                ImageUrl = brand.ImageUrl,
+                RowVersion = brand.RowVersion
             };
         }
     }

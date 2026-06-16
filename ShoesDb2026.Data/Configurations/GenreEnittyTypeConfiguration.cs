@@ -7,12 +7,10 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Configurations
 {
-    public class SizeEntityTypeConfiguration : IEntityTypeConfiguration<Size>
+    public class GenreEntityTypeConfiguration : IEntityTypeConfiguration<Genre>
     {
-        public void Configure(EntityTypeBuilder<Size> builder)
+        public void Configure(EntityTypeBuilder<Genre> builder)
         {
-            builder.Property(s => s.SizeNumber).HasColumnType("decimal(3,1)").IsRequired();
-            builder.HasIndex(s => s.SizeNumber).IsUnique();
             builder.Property(b => b.RowVersion).IsRowVersion();
         }
     }

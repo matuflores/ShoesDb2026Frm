@@ -95,8 +95,9 @@ namespace ShoesDb2026.Service.Services
             }
             brand.BrandName = brandDto.BrandName;
             brand.ImageUrl = brandDto.ImageUrl;
+            brand.RowVersion = brandDto.RowVersion;
 
-            if(_uow.Brands.ExistSameName(brand.BrandName, brand.BrandId))
+            if (_uow.Brands.ExistSameName(brand.BrandName, brand.BrandId))
             {
                 return Result.Failure("BRAND ALREADY EXISTS");
             }

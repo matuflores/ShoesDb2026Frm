@@ -29,7 +29,8 @@ namespace ShoesDb2026.Service.Mappers
             return new SizeUpdateDto
             {
                 SizeId = size.SizeId,
-                SizeNumber = size.SizeNumber
+                SizeNumber = size.SizeNumber,
+                RowVersion = size.RowVersion
             };
         }
     }

@@ -11,9 +11,11 @@ namespace ShoesDb2026.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Shoe> builder)
         {
+            builder.Property(s => s.RowVersion).IsRowVersion();
             builder.Property(s => s.Model).IsRequired().HasMaxLength(150);
             builder.HasIndex(s => s.Model).IsUnique();
             builder.Property(s=>s.Price).HasColumnType("decimal(10,2)");
+            
         }
     }
 }

@@ -30,7 +30,8 @@ namespace ShoesDb2026.Service.Mappers
             return new SportUpdateDto
             {
                 SportId = sport.SportId,
-                SportName = sport.SportName
+                SportName = sport.SportName,
+                RowVersion = sport.RowVersion
             };
         }
     }

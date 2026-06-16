@@ -16,5 +16,6 @@ namespace ShoesDb2026.Service.DTOs.Shoe
         public int SportId { get; set; }
         public int GenreId { get; set; }
         public int SizeId { get; set; }
+        public byte[] RowVersion { get; set; } = null!;
     }
 }
