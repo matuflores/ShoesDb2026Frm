@@ -34,8 +34,8 @@
             errorProvider1 = new ErrorProvider(components);
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtBoxUser = new TextBox();
+            txtBoxPassword = new TextBox();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -47,6 +47,7 @@
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnClose
             // 
@@ -80,32 +81,34 @@
             label2.TabIndex = 3;
             label2.Text = "Password:";
             // 
-            // textBox1
+            // txtBoxUser
             // 
-            textBox1.Location = new Point(271, 67);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(402, 27);
-            textBox1.TabIndex = 0;
+            txtBoxUser.Location = new Point(271, 67);
+            txtBoxUser.Name = "txtBoxUser";
+            txtBoxUser.Size = new Size(402, 27);
+            txtBoxUser.TabIndex = 0;
             // 
-            // textBox2
+            // txtBoxPassword
             // 
-            textBox2.Location = new Point(271, 131);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(402, 27);
-            textBox2.TabIndex = 1;
+            txtBoxPassword.Location = new Point(271, 131);
+            txtBoxPassword.Name = "txtBoxPassword";
+            txtBoxPassword.PasswordChar = '*';
+            txtBoxPassword.Size = new Size(402, 27);
+            txtBoxPassword.TabIndex = 1;
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 321);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtBoxPassword);
+            Controls.Add(txtBoxUser);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnClose);
             Controls.Add(btnLogin);
             Name = "frmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLogin";
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
@@ -117,8 +120,8 @@
         private Button btnLogin;
         private Button btnClose;
         private ErrorProvider errorProvider1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtBoxPassword;
+        private TextBox txtBoxUser;
         private Label label2;
         private Label label1;
     }
