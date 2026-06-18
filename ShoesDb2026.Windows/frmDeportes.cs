@@ -138,7 +138,7 @@ namespace ShoesDb2026.Windows
 
             }
         }
-
+        //clase007 1:12:30
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
             RecargarGrilla();
