@@ -32,7 +32,7 @@ namespace ShoesDb2026.Windows
         {
             if (ValidarDatos())
             {
-                
+
                 Usuario? usuario = UsuariosSistema.Usuarios.FirstOrDefault
                     (u => u.UserName == txtBoxUser.Text
                     && u.Password == txtBoxPassword.Text);
@@ -41,21 +41,26 @@ namespace ShoesDb2026.Windows
                     MessageBox.Show("Invalid username or password.", "Error de autenticación",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
-                    LimpiarDatosLogin();
+                    txtBoxUser.SelectAll();
+                    txtBoxUser.Select();
                     return;
                 }
+                Sesion.UsuarioActual = usuario;
+                this.Hide();
                 frmPrincipal frm=_provider.GetRequiredService<frmPrincipal>();
                 frm.ShowDialog();
-                LimpiarDatosLogin();
+                InicializarControles();
+                this.Show();
             }
         }
 
-        private void LimpiarDatosLogin()
+        private void InicializarControles()
         {
             txtBoxUser.Clear();
             txtBoxPassword.Clear();
-            txtBoxUser.Focus();
+            txtBoxUser.Select();
         }
+
 
         private bool ValidarDatos()
         {
