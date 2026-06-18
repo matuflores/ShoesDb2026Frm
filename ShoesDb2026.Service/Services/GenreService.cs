@@ -95,7 +95,6 @@ namespace ShoesDb2026.Service.Services
                 return Result.Failure("GENRE NOT FOUND");
             }
             genre.GenreName = genreDto.GenreName;
-            genre.RowVersion = genreDto.RowVersion;
 
             if (_uow.Genres.ExistSameName(genre.GenreName, genre.GenreId))
             {

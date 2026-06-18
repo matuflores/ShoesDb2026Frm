@@ -12,7 +12,8 @@ namespace ShoesDb2026.Service.Mappers
         {
             return new Sport
             {
-                SportName = dto.SportName
+                SportName = dto.SportName,
+                Active = true
             };
         }
 
@@ -21,7 +22,8 @@ namespace ShoesDb2026.Service.Mappers
             return new SportListDto
             {
                 SportId = sport.SportId,
-                SportName = sport.SportName
+                SportName = sport.SportName,
+                Active = sport.Active
             };
         }
 
@@ -31,6 +33,7 @@ namespace ShoesDb2026.Service.Mappers
             {
                 SportId = sport.SportId,
                 SportName = sport.SportName,
+                Active = sport.Active,
                 RowVersion = sport.RowVersion
             };
         }

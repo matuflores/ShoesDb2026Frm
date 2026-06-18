@@ -7,5 +7,6 @@ namespace ShoesDb2026.Service.DTOs.Sport
     public class SportCreateDto
     {
         public string SportName { get; set; } = null!;
+        public bool Active { get; set; }
     }
 }

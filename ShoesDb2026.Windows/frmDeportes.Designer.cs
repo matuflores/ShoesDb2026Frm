@@ -29,26 +29,28 @@
         private void InitializeComponent()
         {
             splitContainer1 = new SplitContainer();
-            dataGridView1 = new DataGridView();
+            dgvDatos = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colActivo = new DataGridViewCheckBoxColumn();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
             tsbEditar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
+            tsbFiltrar = new ToolStripDropDownButton();
+            tsmActivo = new ToolStripMenuItem();
+            tsmNoActivo = new ToolStripMenuItem();
             tsbActualizar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbCerrar = new ToolStripButton();
-            tsbFiltrar = new ToolStripDropDownButton();
-            label1 = new Label();
             lblCantidad = new Label();
-            colId = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colActivo = new DataGridViewCheckBoxColumn();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(dataGridView1);
+            splitContainer1.Panel1.Controls.Add(dgvDatos);
             splitContainer1.Panel1.Controls.Add(toolStrip1);
             // 
             // splitContainer1.Panel2
@@ -72,21 +74,46 @@
             splitContainer1.SplitterDistance = 386;
             splitContainer1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvDatos
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre, colActivo });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 67);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(800, 319);
-            dataGridView1.TabIndex = 0;
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre, colActivo });
+            dgvDatos.Dock = DockStyle.Fill;
+            dgvDatos.Location = new Point(0, 67);
+            dgvDatos.MultiSelect = false;
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowHeadersWidth = 51;
+            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDatos.Size = new Size(800, 319);
+            dgvDatos.TabIndex = 0;
+            // 
+            // colId
+            // 
+            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colId.HeaderText = "Id";
+            colId.MinimumWidth = 6;
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Visible = false;
+            // 
+            // colNombre
+            // 
+            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNombre.HeaderText = "Deporte";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colActivo
+            // 
+            colActivo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colActivo.HeaderText = "Activo";
+            colActivo.MinimumWidth = 6;
+            colActivo.Name = "colActivo";
+            colActivo.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -133,6 +160,31 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 67);
             // 
+            // tsbFiltrar
+            // 
+            tsbFiltrar.DropDownItems.AddRange(new ToolStripItem[] { tsmActivo, tsmNoActivo });
+            tsbFiltrar.Image = Properties.Resources._04FILTRAR_40px;
+            tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbFiltrar.ImageTransparentColor = Color.Magenta;
+            tsbFiltrar.Name = "tsbFiltrar";
+            tsbFiltrar.Size = new Size(61, 64);
+            tsbFiltrar.Text = "Filtrar";
+            tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // tsmActivo
+            // 
+            tsmActivo.Name = "tsmActivo";
+            tsmActivo.Size = new Size(224, 26);
+            tsmActivo.Text = "Activo";
+            tsmActivo.Click += tsmActivo_Click;
+            // 
+            // tsmNoActivo
+            // 
+            tsmNoActivo.Name = "tsmNoActivo";
+            tsmNoActivo.Size = new Size(224, 26);
+            tsmNoActivo.Text = "No Activo";
+            tsmNoActivo.Click += tsmNoActivo_Click;
+            // 
             // tsbActualizar
             // 
             tsbActualizar.Image = Properties.Resources._05REFRESH_40px;
@@ -142,6 +194,7 @@
             tsbActualizar.Size = new Size(79, 64);
             tsbActualizar.Text = "Actualizar";
             tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbActualizar.Click += tsbActualizar_Click;
             // 
             // toolStripSeparator2
             // 
@@ -157,25 +210,7 @@
             tsbCerrar.Size = new Size(53, 64);
             tsbCerrar.Text = "Cerrar";
             tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // tsbFiltrar
-            // 
-            tsbFiltrar.Image = Properties.Resources._04FILTRAR_40px;
-            tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
-            tsbFiltrar.ImageTransparentColor = Color.Magenta;
-            tsbFiltrar.Name = "tsbFiltrar";
-            tsbFiltrar.Size = new Size(61, 64);
-            tsbFiltrar.Text = "Filtrar";
-            tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(22, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(76, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Cantidad: ";
+            tsbCerrar.Click += tsbCerrar_Click;
             // 
             // lblCantidad
             // 
@@ -187,30 +222,14 @@
             lblCantidad.TabIndex = 1;
             lblCantidad.Text = "0";
             // 
-            // colId
+            // label1
             // 
-            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colId.HeaderText = "Id";
-            colId.MinimumWidth = 6;
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            colId.Visible = false;
-            // 
-            // colNombre
-            // 
-            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colNombre.HeaderText = "Deporte";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colActivo
-            // 
-            colActivo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colActivo.HeaderText = "Activo";
-            colActivo.MinimumWidth = 6;
-            colActivo.Name = "colActivo";
-            colActivo.ReadOnly = true;
+            label1.AutoSize = true;
+            label1.Location = new Point(22, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(76, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Cantidad: ";
             // 
             // frmDeportes
             // 
@@ -219,14 +238,16 @@
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
             Name = "frmDeportes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmDeportes";
+            Load += frmDeportes_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);
@@ -235,7 +256,7 @@
         #endregion
 
         private SplitContainer splitContainer1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDatos;
         private ToolStrip toolStrip1;
         private ToolStripButton tsbNuevo;
         private ToolStripButton tsbBorrar;
@@ -250,5 +271,7 @@
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewCheckBoxColumn colActivo;
+        private ToolStripMenuItem tsmActivo;
+        private ToolStripMenuItem tsmNoActivo;
     }
 }

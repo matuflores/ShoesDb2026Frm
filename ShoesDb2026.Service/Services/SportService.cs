@@ -70,6 +70,22 @@ namespace ShoesDb2026.Service.Services
             }
         }
 
+        public Result<List<SportListDto>> FilterForActive(bool active)
+        {
+            try
+            {
+                var query = _uow.Sports.Query();
+                var list = query.Where(s => s.Active == active);
+                var listDto = list.Select(SportMapper.ToListDto).ToList();
+                return Result<List<SportListDto>>.Success(listDto);
+            }
+            catch (Exception ex)
+            {
+
+                return Result<List<SportListDto>>.Failure($"Error al intentar filtrar los tipos de Deportes: {ex.Message}");
+            }
+        }
+
         public Result<List<SportListDto>> GetAll()
         {
             var sports = _uow.Sports.GetAll().Select(SportMapper.ToListDto).ToList();

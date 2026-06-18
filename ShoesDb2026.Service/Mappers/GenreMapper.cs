@@ -31,9 +31,7 @@ namespace ShoesDb2026.Service.Mappers
             return new GenreUpdateDto
             {
                 GenreId = genre.GenreId,
-                GenreName = genre.GenreName,
-                RowVersion = genre.RowVersion
-
+                GenreName = genre.GenreName
             };
         }
     }

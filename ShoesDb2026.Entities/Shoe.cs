@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ShoesDb2026.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ShoesDb2026.Entities
 {
-    public class Shoe
+    public class Shoe : IConcurrencyEntity
     {
         public int ShoeId { get; set; }
         public string Model { get; set; } = null!;

@@ -11,7 +11,9 @@ namespace ShoesDb2026.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Genre> builder)
         {
-            builder.Property(b => b.RowVersion).IsRowVersion();
+            builder.Property(b => b.GenreName)
+                .IsRequired()
+                .HasMaxLength(10);
         }
     }
 }

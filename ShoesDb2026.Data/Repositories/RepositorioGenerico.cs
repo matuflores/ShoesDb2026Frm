@@ -18,79 +18,57 @@ namespace ShoesDb2026.Data.Repositories
         }
         public void Add(T entity)
         {
-            try
-            {
-                _dbSet.Add(entity);
-            }
-            catch (Exception ex)
-            {
+            _dbSet.Add(entity);
+            //try
+            //{
+            //    _dbSet.Add(entity);
+            //}
+            //catch (Exception ex)
+            //{
 
-                throw new Exception($"Error al intentar agregar un registro en la tabla de {typeof(T).Name}",ex);
-            }
+            //    throw new Exception($"Error al intentar agregar un registro en la tabla de {typeof(T).Name}",ex);
+            //}
         }
 
         public void Delete(int id)
         {
-            try
+            
+            var entity = _dbSet.Find(id);
+            if (entity is null)
             {
-                var entity = _dbSet.Find(id);
-                if (entity is null)
-                {
-                    throw new KeyNotFoundException($"No se pudo borrar la entidad con ID: {id} de la tabla {typeof(T).Name}");
-                }
-                _dbSet.Remove(entity);
+                throw new KeyNotFoundException($"No se pudo borrar la entidad con ID: {id} de la tabla {typeof(T).Name}");
             }
-            catch (Exception ex)
-            {
-
-                throw new Exception($"Error al intentar borrar un registro en la tabla de {typeof(T).Name}", ex);
-            }
+            _dbSet.Remove(entity);
+            
         }
 
         public List<T> GetAll()
         {
-            try
-            {
-                return _dbSet.AsNoTracking().ToList();
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception($"Error al intentar recuperar los registros en la tabla de {typeof(T).Name}", ex);
-            }
+            
+            return _dbSet.AsNoTracking().ToList();
+            
         }
 
         public T? GetById(int id)
         {
-            try
-            {
-                return _dbSet.Find(id);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception($"Error al intentar buscar un registro en la tabla de {typeof(T).Name}", ex);
-            }
+            
+            return _dbSet.Find(id);
         }
 
         public IQueryable<T> Query()
         {
-            return _dbSet.AsNoTracking().AsQueryable();
+            return _dbSet.AsNoTracking();
         }
 
         public void Update(T entity, int id)
         {
-            try
+            
+            var entityInDb = _dbSet.Find(id);
+            if (entityInDb is null)
             {
-                var entityInDb = _dbSet.Find(id);
-                if (entityInDb is null)return;
-                _dbSet.Entry(entityInDb).CurrentValues.SetValues(entity);//aca no uso dbcontex y uso dbset, porque el dbset ya tiene el contexto asociado, entonces no necesito usar el contexto para actualizar la entidad, solo necesito usar el dbset para encontrar la entidad y luego actualizarla con los valores de la entidad que me pasan por parametro
+                throw new KeyNotFoundException($"No se pudo editar la entidad con ID: {id} de la tabla {typeof(T).Name}");
             }
-            catch (Exception ex)
-            {
-
-                throw new Exception($"Error al intentar actualizar un registro en la tabla de {typeof(T).Name}", ex);
-            }
+            _dbSet.Entry(entityInDb).CurrentValues.SetValues(entity);//aca no uso dbcontex y uso dbset, porque el dbset ya tiene el contexto asociado, entonces no necesito usar el contexto para actualizar la entidad, solo necesito usar el dbset para encontrar la entidad y luego actualizarla con los valores de la entidad que me pasan por parametro
         }
     }
 }

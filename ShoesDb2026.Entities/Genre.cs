@@ -9,6 +9,6 @@ namespace ShoesDb2026.Entities
         public int GenreId { get; set; }
         public string GenreName { get; set; } = null!;
         public bool Active { get; set; } = true;
-        public byte[] RowVersion { get; set; } = null!;
+        //public byte[] RowVersion { get; set; } = null!;
     }
 }

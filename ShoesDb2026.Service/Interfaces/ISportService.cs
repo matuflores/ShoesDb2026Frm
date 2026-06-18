@@ -15,5 +15,6 @@ namespace ShoesDb2026.Service.Interfaces
         Result Add(SportCreateDto sportDto);
         Result Update(SportUpdateDto sportDto);
         Result Delete(int id);
+        Result<List<SportListDto>> FilterForActive(bool active);
     }
 }

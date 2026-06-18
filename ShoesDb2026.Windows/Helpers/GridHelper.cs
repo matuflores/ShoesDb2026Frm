@@ -1,5 +1,6 @@
 ﻿using ShoesDb2026.Entities;
 using ShoesDb2026.Service.DTOs.Brand;
+using ShoesDb2026.Service.DTOs.Sport;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,6 +36,11 @@ namespace ShoesDb2026.Windows.Helpers
                 case BrandListDto brandDto:
                     r.Cells[0].Value = brandDto.BrandId;
                     r.Cells[1].Value = brandDto.BrandName;
+                    break;
+                case SportListDto sportDto:
+                    r.Cells[0].Value = sportDto.SportId;
+                    r.Cells[1].Value = sportDto.SportName;
+                    r.Cells[2].Value = sportDto.Active;
                     break;
             }
 

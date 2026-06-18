@@ -1,4 +1,5 @@
-﻿using ShoesDb2026.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoesDb2026.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,31 @@ namespace ShoesDb2026.Data
         public ISizesRepository Sizes { get; }
 
         public ISportsRepository Sports { get; }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
+
+        public void RollBack()
+        {
+            foreach (var item in _context.ChangeTracker.Entries())
+            {
+                switch (item.State)
+                {
+                    case EntityState.Modified:
+                        item.State = EntityState.Unchanged;
+                        item.CurrentValues.SetValues(item.OriginalValues);
+                        break;
+                    case EntityState.Added: 
+                        item.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        item.State = EntityState.Unchanged;
+                        break;
+                }
+            }
+        }
 
         public void Save()
         {

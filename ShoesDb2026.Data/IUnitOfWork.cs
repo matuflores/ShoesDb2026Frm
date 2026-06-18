@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoesDb2026.Data
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork:IDisposable
     {
         IBrandsRepository Brands { get; }
         IGenresRepository Genres { get; }
@@ -13,5 +13,6 @@ namespace ShoesDb2026.Data
         ISizesRepository Sizes { get; }
         ISportsRepository Sports { get; }
         void Save();
+        void RollBack();
     }
 }

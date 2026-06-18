@@ -32,6 +32,7 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             lblUsuarioActual = new ToolStripStatusLabel();
             panel1 = new Panel();
+            btnLogout = new Button();
             labelFechaActual = new Label();
             labelFecha = new Label();
             label1 = new Label();
@@ -44,7 +45,6 @@
             panel3 = new Panel();
             label3 = new Label();
             label2 = new Label();
-            btnLogout = new Button();
             statusStrip1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -83,6 +83,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(807, 64);
             panel1.TabIndex = 1;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.FromArgb(255, 128, 128);
+            btnLogout.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(691, 16);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(77, 29);
+            btnLogout.TabIndex = 3;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // labelFechaActual
             // 
@@ -143,6 +155,7 @@
             btnDeportes.TabIndex = 3;
             btnDeportes.Text = "Deportes";
             btnDeportes.UseVisualStyleBackColor = true;
+            btnDeportes.Click += btnDeportes_Click;
             // 
             // btnTalles
             // 
@@ -199,18 +212,6 @@
             label2.Size = new Size(270, 23);
             label2.TabIndex = 0;
             label2.Text = "Sistema de Gestion de Zapatillas";
-            // 
-            // btnLogout
-            // 
-            btnLogout.BackColor = Color.FromArgb(255, 128, 128);
-            btnLogout.Font = new Font("Bahnschrift", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogout.Location = new Point(691, 16);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(77, 29);
-            btnLogout.TabIndex = 3;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = false;
-            btnLogout.Click += btnLogout_Click;
             // 
             // frmPrincipal
             // 
