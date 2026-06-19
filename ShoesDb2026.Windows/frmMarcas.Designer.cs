@@ -30,10 +30,6 @@
         {
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colImageUrl = new DataGridViewTextBoxColumn();
-            colActive = new DataGridViewCheckBoxColumn();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
@@ -47,6 +43,10 @@
             tsbCerrar = new ToolStripButton();
             lblCantidad = new Label();
             label1 = new Label();
+            colId = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colImageUrl = new DataGridViewTextBoxColumn();
+            colActive = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -90,39 +90,6 @@
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDatos.Size = new Size(800, 303);
             dgvDatos.TabIndex = 0;
-            // 
-            // colId
-            // 
-            colId.HeaderText = "Id";
-            colId.MinimumWidth = 6;
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            colId.Visible = false;
-            colId.Width = 125;
-            // 
-            // colNombre
-            // 
-            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colNombre.HeaderText = "Marca";
-            colNombre.MinimumWidth = 6;
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            // 
-            // colImageUrl
-            // 
-            colImageUrl.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colImageUrl.HeaderText = "Url Logo";
-            colImageUrl.MinimumWidth = 6;
-            colImageUrl.Name = "colImageUrl";
-            colImageUrl.ReadOnly = true;
-            // 
-            // colActive
-            // 
-            colActive.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colActive.HeaderText = "Activo";
-            colActive.MinimumWidth = 6;
-            colActive.Name = "colActive";
-            colActive.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -243,6 +210,43 @@
             label1.TabIndex = 0;
             label1.Text = "Cantidad de registros: ";
             // 
+            // colId
+            // 
+            colId.DataPropertyName = "BrandId";
+            colId.HeaderText = "Id";
+            colId.MinimumWidth = 6;
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Visible = false;
+            colId.Width = 125;
+            // 
+            // colNombre
+            // 
+            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNombre.DataPropertyName = "BrandName";
+            colNombre.HeaderText = "Marca";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            // 
+            // colImageUrl
+            // 
+            colImageUrl.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colImageUrl.DataPropertyName = "ImageUrl";
+            colImageUrl.HeaderText = "Url Logo";
+            colImageUrl.MinimumWidth = 6;
+            colImageUrl.Name = "colImageUrl";
+            colImageUrl.ReadOnly = true;
+            // 
+            // colActive
+            // 
+            colActive.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colActive.DataPropertyName = "Active";
+            colActive.HeaderText = "Activo";
+            colActive.MinimumWidth = 6;
+            colActive.Name = "colActive";
+            colActive.ReadOnly = true;
+            // 
             // frmMarcas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -279,12 +283,12 @@
         private ToolStripButton tsbCerrar;
         private Label lblCantidad;
         private Label label1;
+        private ToolStripDropDownButton tsbFiltrar;
+        private ToolStripMenuItem tsmActivo;
+        private ToolStripMenuItem tsmNoActivo;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colNombre;
         private DataGridViewTextBoxColumn colImageUrl;
         private DataGridViewCheckBoxColumn colActive;
-        private ToolStripDropDownButton tsbFiltrar;
-        private ToolStripMenuItem tsmActivo;
-        private ToolStripMenuItem tsmNoActivo;
     }
 }

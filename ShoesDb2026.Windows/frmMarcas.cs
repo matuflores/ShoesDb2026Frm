@@ -1,15 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ShoesDb2026.Service.DTOs.Brand;
-using ShoesDb2026.Service.DTOs.Sport;
 using ShoesDb2026.Service.Interfaces;
 using ShoesDb2026.Windows.Helpers;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ShoesDb2026.Windows
 {
@@ -18,6 +11,8 @@ namespace ShoesDb2026.Windows
         private readonly IServiceProvider _serviceProvider;
         private List<BrandListDto>? _listBrands;
         private bool filtroActivo = false;
+
+        private BindingSource _bindingSource = new BindingSource();
         public frmMarcas(IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -57,15 +52,18 @@ namespace ShoesDb2026.Windows
 
         private void MostrarDatosEnGrilla(List<BrandListDto>? listBrands)
         {
-            GridHelper.LimpiarGrilla(dgvDatos);
+            //GridHelper.LimpiarGrilla(dgvDatos);
             if (listBrands is null ||
                 listBrands.Count == 0) return;
-            foreach (var item in listBrands)
-            {
-                var r = GridHelper.ConstruirFila(dgvDatos);
-                GridHelper.SetearFila(r, item);
-                GridHelper.AgregarFila(r, dgvDatos);
-            }
+            //foreach (var item in listBrands)
+            //{
+            //    var r = GridHelper.ConstruirFila(dgvDatos);
+            //    GridHelper.SetearFila(r, item);
+            //    GridHelper.AgregarFila(r, dgvDatos);
+            //}
+            var bindingList=new BindingList<BrandListDto>(listBrands);
+            _bindingSource.DataSource = bindingList;
+            dgvDatos.DataSource=_bindingSource;
             lblCantidad.Text = listBrands.Count.ToString();
         }
 
@@ -148,15 +146,13 @@ namespace ShoesDb2026.Windows
 
         private void tsbBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.SelectedRows.Count == 0)
+            if (_bindingSource.Current==null)
             {
                 MessageBox.Show("Por favor, seleccione la marca a borrar.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var filaSeleccionada = dgvDatos.SelectedRows[0];
-            if (filaSeleccionada.Tag is null) return;
-            BrandListDto brandListDto = (BrandListDto)filaSeleccionada.Tag;
+            BrandListDto brandListDto = (BrandListDto)_bindingSource.Current;
 
             using (var scope = _serviceProvider.CreateScope())
             {
@@ -225,15 +221,13 @@ namespace ShoesDb2026.Windows
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.SelectedCells.Count == 0)
+            if (_bindingSource.Current==null)
             {
-                MessageBox.Show("Debe seleccionar una fila de la grilla",
+                MessageBox.Show("Por favor, seleccione la marca a borrar.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var filaSeleccionada = dgvDatos.SelectedRows[0];
-            if (filaSeleccionada.Tag is null) return;
-            var brandListDto = (BrandListDto)filaSeleccionada.Tag;
+            var brandListDto=(BrandListDto) _bindingSource.Current;
             using (var scope = _serviceProvider.CreateScope())
             {
                 try
