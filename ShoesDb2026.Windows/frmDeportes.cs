@@ -185,6 +185,7 @@ namespace ShoesDb2026.Windows
                     {
                         string errores = string.Join("\n", resultadoEliminacion.Errors);
                         MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RecargarGrilla();
                         return;
                     }
 

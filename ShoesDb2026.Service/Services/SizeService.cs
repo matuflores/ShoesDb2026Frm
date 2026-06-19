@@ -63,7 +63,7 @@ namespace ShoesDb2026.Service.Services
             catch (DbUpdateConcurrencyException ex)
             {
                 _uow.RollBack();
-                return Result.ConcurrencyFailure("Otro usuario ha modificado el deporte.");
+                return Result.ConcurrencyFailure("Otro usuario ha modificado el talle.");
             }
             catch (KeyNotFoundException ex)
             {

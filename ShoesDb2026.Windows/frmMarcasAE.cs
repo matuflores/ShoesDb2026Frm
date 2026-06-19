@@ -94,7 +94,7 @@ namespace ShoesDb2026.Windows
 
                             ConcurrencyConflict = true;
                             DialogResult = DialogResult.Cancel;
-
+                            
                             Close();
                             return;
                         }
