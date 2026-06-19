@@ -17,7 +17,7 @@ namespace ShoesDb2026.Windows
         private readonly ISportService _sportService;
         private bool _esEdicion = false;
 
-
+        
         public frmDeportesAE(ISportService sportService)
         {
             InitializeComponent();
