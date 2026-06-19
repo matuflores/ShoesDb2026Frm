@@ -174,6 +174,7 @@
             btnGeneros.TabIndex = 1;
             btnGeneros.Text = "Generos";
             btnGeneros.UseVisualStyleBackColor = true;
+            btnGeneros.Click += btnGeneros_Click;
             // 
             // btnMarcas
             // 

@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGeneros));
             splitContainer1 = new SplitContainer();
+            dgvDatos = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
             toolStrip1 = new ToolStrip();
-            dataGridView1 = new DataGridView();
-            toolStripButton1 = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            toolStripButton3 = new ToolStripButton();
+            tslListaDeGeneros = new ToolStripLabel();
             toolStripSeparator1 = new ToolStripSeparator();
-            toolStripButton4 = new ToolStripButton();
-            toolStripButton5 = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            toolStripButton6 = new ToolStripButton();
+            tsbCerrar = new ToolStripButton();
+            lblCantidadDeGeneros = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // splitContainer1
@@ -56,129 +55,133 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(dataGridView1);
+            splitContainer1.Panel1.Controls.Add(dgvDatos);
             splitContainer1.Panel1.Controls.Add(toolStrip1);
-            splitContainer1.Size = new Size(800, 450);
-            splitContainer1.SplitterDistance = 368;
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(lblCantidadDeGeneros);
+            splitContainer1.Panel2.Controls.Add(label1);
+            splitContainer1.Size = new Size(548, 283);
+            splitContainer1.SplitterDistance = 226;
             splitContainer1.TabIndex = 0;
+            // 
+            // dgvDatos
+            // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre });
+            dgvDatos.Dock = DockStyle.Fill;
+            dgvDatos.Location = new Point(0, 67);
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowHeadersWidth = 51;
+            dgvDatos.Size = new Size(548, 159);
+            dgvDatos.TabIndex = 1;
+            // 
+            // colId
+            // 
+            colId.HeaderText = "Id";
+            colId.MinimumWidth = 6;
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Visible = false;
+            colId.Width = 125;
+            // 
+            // colNombre
+            // 
+            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNombre.HeaderText = "Genero";
+            colNombre.MinimumWidth = 6;
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripSeparator1, toolStripButton4, toolStripButton5, toolStripSeparator2, toolStripButton6 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tslListaDeGeneros, toolStripSeparator1, tsbCerrar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 27);
+            toolStrip1.Size = new Size(548, 67);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
-            // dataGridView1
+            // tslListaDeGeneros
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 27);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(800, 341);
-            dataGridView1.TabIndex = 1;
-            // 
-            // toolStripButton1
-            // 
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(29, 24);
-            toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(29, 24);
-            toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(29, 24);
-            toolStripButton3.Text = "toolStripButton3";
+            tslListaDeGeneros.Name = "tslListaDeGeneros";
+            tslListaDeGeneros.Size = new Size(159, 64);
+            tslListaDeGeneros.Text = "LISTADO DE GENEROS";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 27);
+            toolStripSeparator1.Size = new Size(6, 67);
             // 
-            // toolStripButton4
+            // tsbCerrar
             // 
-            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton4.Image = (Image)resources.GetObject("toolStripButton4.Image");
-            toolStripButton4.ImageTransparentColor = Color.Magenta;
-            toolStripButton4.Name = "toolStripButton4";
-            toolStripButton4.Size = new Size(29, 24);
-            toolStripButton4.Text = "toolStripButton4";
+            tsbCerrar.Image = Properties.Resources._06CERRAR_40px;
+            tsbCerrar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbCerrar.ImageTransparentColor = Color.Magenta;
+            tsbCerrar.Name = "tsbCerrar";
+            tsbCerrar.Size = new Size(53, 64);
+            tsbCerrar.Text = "Cerrar";
+            tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbCerrar.Click += tsbCerrar_Click;
             // 
-            // toolStripButton5
+            // lblCantidadDeGeneros
             // 
-            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton5.Image = (Image)resources.GetObject("toolStripButton5.Image");
-            toolStripButton5.ImageTransparentColor = Color.Magenta;
-            toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new Size(29, 24);
-            toolStripButton5.Text = "toolStripButton5";
+            lblCantidadDeGeneros.AutoSize = true;
+            lblCantidadDeGeneros.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidadDeGeneros.Location = new Point(199, 15);
+            lblCantidadDeGeneros.Name = "lblCantidadDeGeneros";
+            lblCantidadDeGeneros.Size = new Size(18, 20);
+            lblCantidadDeGeneros.TabIndex = 1;
+            lblCantidadDeGeneros.Text = "0";
             // 
-            // toolStripSeparator2
+            // label1
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 27);
-            // 
-            // toolStripButton6
-            // 
-            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
-            toolStripButton6.ImageTransparentColor = Color.Magenta;
-            toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(29, 24);
-            toolStripButton6.Text = "toolStripButton6";
+            label1.AutoSize = true;
+            label1.Location = new Point(27, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(154, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Cantidad de registros:";
             // 
             // frmGeneros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(548, 283);
+            ControlBox = false;
             Controls.Add(splitContainer1);
             Name = "frmGeneros";
-            Text = "frmGeneros";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Generos";
+            Load += frmGeneros_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private SplitContainer splitContainer1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDatos;
         private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
+        private ToolStripButton tsbCerrar;
+        private ToolStripLabel tslListaDeGeneros;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton toolStripButton4;
-        private ToolStripButton toolStripButton5;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton toolStripButton6;
+        private Label lblCantidadDeGeneros;
+        private Label label1;
+        private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn colNombre;
     }
 }

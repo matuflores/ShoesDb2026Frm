@@ -33,7 +33,16 @@ namespace ShoesDb2026.Windows
         {
             using (var frm = _serviceProvider.GetRequiredService<frmDeportes>())
             {
-                frm.Text= "Lista de Deportes";
+                frm.Text = "Lista de Deportes";
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnGeneros_Click(object sender, EventArgs e)
+        {
+            using (var frm = _serviceProvider.GetRequiredService<frmGeneros>())
+            {
+                frm.Text = "Lista de Géneros";
                 frm.ShowDialog();
             }
         }

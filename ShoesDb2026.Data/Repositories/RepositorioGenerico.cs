@@ -30,7 +30,7 @@ namespace ShoesDb2026.Data.Repositories
             //}
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             
             var entity = _dbSet.Find(id);

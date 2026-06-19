@@ -144,6 +144,7 @@
             tsbBorrar.Size = new Size(54, 64);
             tsbBorrar.Text = "Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbBorrar.Click += tsbBorrar_Click;
             // 
             // tsbEditar
             // 
@@ -174,14 +175,14 @@
             // tsmActivo
             // 
             tsmActivo.Name = "tsmActivo";
-            tsmActivo.Size = new Size(224, 26);
+            tsmActivo.Size = new Size(158, 26);
             tsmActivo.Text = "Activo";
             tsmActivo.Click += tsmActivo_Click;
             // 
             // tsmNoActivo
             // 
             tsmNoActivo.Name = "tsmNoActivo";
-            tsmNoActivo.Size = new Size(224, 26);
+            tsmNoActivo.Size = new Size(158, 26);
             tsmNoActivo.Text = "No Activo";
             tsmNoActivo.Click += tsmNoActivo_Click;
             // 

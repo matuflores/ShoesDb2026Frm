@@ -12,9 +12,12 @@ namespace ShoesDb2026.Service.Interfaces
         Result<List<SportListDto>> GetAll();
         Result<SportUpdateDto> GetForUpdate(int id);
 
+        Result<SportDeleteDto> GetForDelete(int id);
         Result Add(SportCreateDto sportDto);
         Result Update(SportUpdateDto sportDto);
-        Result Delete(int id);
+        Result Delete(SportDeleteDto sportDto);
         Result<List<SportListDto>> FilterForActive(bool active);
+
+        
     }
 }

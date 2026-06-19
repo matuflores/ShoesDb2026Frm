@@ -63,7 +63,8 @@ namespace ShoesDb2026.Windows
         private void MostrarDatosEnGrilla(List<SportListDto>? listSports)
         {
             GridHelper.LimpiarGrilla(dgvDatos);
-            if (listSports is null || listSports.Count == 0) return;
+            if (listSports is null ||
+                listSports.Count == 0) return;
             foreach (var item in listSports)
             {
                 var r = GridHelper.ConstruirFila(dgvDatos);
@@ -138,11 +139,71 @@ namespace ShoesDb2026.Windows
 
             }
         }
-        //clase007 1:12:30
+
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
             RecargarGrilla();
             ManejarControles(false);
+        }
+
+        private void tsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione el deporte a borrar.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            if (filaSeleccionada.Tag is null) return;
+            SportListDto sportListDto = (SportListDto)filaSeleccionada.Tag;
+            
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var sportService = scope.ServiceProvider
+                    .GetRequiredService<ISportService>();
+
+                var resultadoConsulta = sportService.GetForDelete(sportListDto.SportId);
+                if (resultadoConsulta.IsFailure)
+                {
+                    string errores = string.Join("\n", resultadoConsulta.Errors);
+                    MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var sportDeleteDto = resultadoConsulta.Value;
+
+                var dr = MessageBox.Show($"¿Confirma que desea eliminar el deporte '{sportListDto.SportName}'?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.No) return;
+
+                
+                try
+                {
+                    var resultadoEliminacion =sportService.Delete(sportDeleteDto!);
+                    if (resultadoEliminacion.IsFailure)
+                    {
+                        string errores = string.Join("\n", resultadoEliminacion.Errors);
+                        MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    //if (resultadoEliminacion.IsConcurrencyConflict)
+                    //{
+                    //    string errores = string.Join("\n", resultadoEliminacion.Errors);
+                    //    MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    RecargarGrilla();
+                    //    return;
+                    //}
+
+                    MessageBox.Show("Deporte eliminado exitosamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RecargarGrilla();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

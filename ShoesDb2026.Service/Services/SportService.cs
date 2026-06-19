@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using ShoesDb2026.Data;
 using ShoesDb2026.Entities;
 using ShoesDb2026.Service.Common;
@@ -47,26 +48,29 @@ namespace ShoesDb2026.Service.Services
             }
         }
 
-        public Result Delete(int id)
+        public Result Delete(SportDeleteDto sportDto)
         {
-            var sport = _uow.Sports.GetById(id);
-            if (sport == null)
-            {
-                return Result.Failure("SPORT NOT FOUND");
-            }
-            if (_uow.Sports.HasShoes(id))
-            {
-                return Result.Failure("SPORT HAS SHOES, CAN'T BE DELETED");
-            }
             try
             {
-                _uow.Sports.Delete(id);
+                _uow.Sports.Delete(sportDto.SportId,
+                    sportDto.RowVersion);
                 _uow.Save();
                 return Result.Success();
             }
+            catch(DbUpdateConcurrencyException ex)
+            {
+                _uow.RollBack();
+                return Result.ConcurrencyFailure("Otro usuario ha modificado el deporte.");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                _uow.RollBack();
+                return Result.Failure($"Deporte con ID: {sportDto.SportId} no encontrado.");
+            }
             catch (Exception ex)
             {
-                return Result.Failure(ex.Message);
+                _uow.RollBack();
+                return Result.Failure($"Error al intentar eliminar el deporte: {ex.Message}");
             }
         }
 
@@ -90,6 +94,17 @@ namespace ShoesDb2026.Service.Services
         {
             var sports = _uow.Sports.GetAll().Select(SportMapper.ToListDto).ToList();
             return Result<List<SportListDto>>.Success(sports);
+        }
+
+        public Result<SportDeleteDto> GetForDelete(int id)
+        {
+            var sport = _uow.Sports.GetById(id);
+            if (sport == null)
+            {
+                return Result<SportDeleteDto>.Failure("SPORT NOT FOUND");
+            }
+
+            return Result<SportDeleteDto>.Success(SportMapper.ToDeleteDto(sport));
         }
 
         public Result<SportUpdateDto> GetForUpdate(int id)

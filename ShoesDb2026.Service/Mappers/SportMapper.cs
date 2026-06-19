@@ -37,5 +37,14 @@ namespace ShoesDb2026.Service.Mappers
                 RowVersion = sport.RowVersion
             };
         }
+
+        public static SportDeleteDto ToDeleteDto(Sport sport)
+        {
+            return new SportDeleteDto
+            {
+                SportId = sport.SportId,
+                RowVersion = sport.RowVersion
+            };
+        }
     }
 }
