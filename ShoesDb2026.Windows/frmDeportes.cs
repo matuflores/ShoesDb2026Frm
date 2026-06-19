@@ -255,11 +255,11 @@ namespace ShoesDb2026.Windows
                         frm.Text = "Editar Deporte";
                         frm.SetSport(tipoEditDto);
                         frm.ShowDialog();
-                        if (frm.ConcurrencyConflict)//si hubo concurrencia se recarga la grilla
+                        if (frm.ConcurrencyConflict)
                         {
                             RecargarGrilla();
                         }
-                        if (frm.DataChanged)//si cambiaron los datos se recarga la grilla
+                        if (frm.DataChanged)
                         {
                             RecargarGrilla();
                         }
