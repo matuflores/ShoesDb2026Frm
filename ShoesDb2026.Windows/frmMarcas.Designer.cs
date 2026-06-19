@@ -89,7 +89,7 @@
             dgvDatos.RowHeadersWidth = 51;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDatos.Size = new Size(800, 303);
-            dgvDatos.TabIndex = 1;
+            dgvDatos.TabIndex = 0;
             // 
             // colId
             // 
@@ -184,14 +184,14 @@
             // tsmActivo
             // 
             tsmActivo.Name = "tsmActivo";
-            tsmActivo.Size = new Size(224, 26);
+            tsmActivo.Size = new Size(158, 26);
             tsmActivo.Text = "Activo";
             tsmActivo.Click += tsmActivo_Click;
             // 
             // tsmNoActivo
             // 
             tsmNoActivo.Name = "tsmNoActivo";
-            tsmNoActivo.Size = new Size(224, 26);
+            tsmNoActivo.Size = new Size(158, 26);
             tsmNoActivo.Text = "No Activo";
             tsmNoActivo.Click += tsmNoActivo_Click;
             // 

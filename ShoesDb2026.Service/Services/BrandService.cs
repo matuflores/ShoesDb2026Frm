@@ -52,7 +52,7 @@ namespace ShoesDb2026.Service.Services
         {
             try
             {
-                _uow.Sports.Delete(brandDto.BrandId,
+                _uow.Brands.Delete(brandDto.BrandId,
                     brandDto.RowVersion);
                 _uow.Save();
                 return Result.Success();
