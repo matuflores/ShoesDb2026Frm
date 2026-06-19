@@ -13,7 +13,7 @@ namespace ShoesDb2026.Entities
         public string? ImageUrl { get; set; }
         public bool Active { get; set; } = true;
 
-        public ICollection<Shoe> Shoes { get; set; } = new List<Shoe>();
+        //public ICollection<Shoe> Shoes { get; set; } = new List<Shoe>();
 
         public byte[] RowVersion { get; set; } = null!;
     }

@@ -10,9 +10,11 @@ namespace ShoesDb2026.Service.Interfaces
     {
         Result<List<BrandListDto>> GetAll();
         Result<BrandUpdateDto> GetForUpdate(int id);
+        Result<BrandDeleteDto> GetForDelete(int id);
 
         Result Add(BrandCreateDto brandDto);
         Result Update(BrandUpdateDto brandDto);
-        Result Delete(int id);
+        Result Delete(BrandDeleteDto brandDto);
+        Result<List<BrandListDto>> FilterForActive(bool active);
     }
 }

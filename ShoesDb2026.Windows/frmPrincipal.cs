@@ -46,5 +46,14 @@ namespace ShoesDb2026.Windows
                 frm.ShowDialog();
             }
         }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            using (var frm = _serviceProvider.GetRequiredService<frmMarcas>())
+            {
+                frm.Text = "Lista de Marcas";
+                frm.ShowDialog();
+            }
+        }
     }
 }

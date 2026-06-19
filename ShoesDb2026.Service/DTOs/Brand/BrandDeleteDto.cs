@@ -4,14 +4,9 @@ using System.Text;
 
 namespace ShoesDb2026.Service.DTOs.Brand
 {
-    public class BrandUpdateDto
+    public class BrandDeleteDto
     {
         public int BrandId { get; set; }
-        public string BrandName { get; set; } = null!;
-
-        public string? ImageUrl { get; set; }
-
-        public bool Active { get; set; }
         public byte[] RowVersion { get; set; } = null!;
     }
 }

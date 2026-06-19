@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Interfaces
 {
-    public interface IBrandsRepository : IRepositorioGenerico<Brand>
+    public interface IBrandsRepository : IRepositorioConcurrente<Brand>
     {
         bool ExistSameName(string brandName, int? brandId = null);
         bool HasShoes(int brandId);

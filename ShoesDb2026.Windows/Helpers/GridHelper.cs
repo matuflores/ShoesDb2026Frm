@@ -37,6 +37,8 @@ namespace ShoesDb2026.Windows.Helpers
                 case BrandListDto brandDto:
                     r.Cells[0].Value = brandDto.BrandId;
                     r.Cells[1].Value = brandDto.BrandName;
+                    r.Cells[2].Value = brandDto.ImageUrl;
+                    r.Cells[3].Value = brandDto.Active;
                     break;
                 case SportListDto sportDto:
                     r.Cells[0].Value = sportDto.SportId;

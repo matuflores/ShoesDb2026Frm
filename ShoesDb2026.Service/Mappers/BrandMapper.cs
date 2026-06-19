@@ -13,7 +13,8 @@ namespace ShoesDb2026.Service.Mappers
             return new Brand
             {
                 BrandName = dto.BrandName,
-                ImageUrl = dto.ImageUrl
+                ImageUrl = dto.ImageUrl,
+                Active=true
             };
         }
         public static BrandListDto ToListDto(Brand brand)
@@ -21,7 +22,9 @@ namespace ShoesDb2026.Service.Mappers
             return new BrandListDto
             {
                 BrandId = brand.BrandId,
-                BrandName = brand.BrandName
+                BrandName = brand.BrandName,
+                ImageUrl = brand.ImageUrl,
+                Active=true
             };
         }
 
@@ -32,6 +35,16 @@ namespace ShoesDb2026.Service.Mappers
                 BrandId = brand.BrandId,
                 BrandName = brand.BrandName,
                 ImageUrl = brand.ImageUrl,
+                Active = brand.Active,
+                RowVersion = brand.RowVersion
+            };
+        }
+
+        public static BrandDeleteDto ToDeleteDto(Brand brand)
+        {
+            return new BrandDeleteDto
+            {
+                BrandId = brand.BrandId,
                 RowVersion = brand.RowVersion
             };
         }

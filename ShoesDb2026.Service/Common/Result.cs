@@ -36,7 +36,7 @@ namespace ShoesDb2026.Service.Common
 
         public static Result ConcurrencyFailure(string error)
         {
-            return new Result(false, new List<string> { error }, false);
+            return new Result(false, new List<string> { error }, true);
         }
     }
 }

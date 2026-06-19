@@ -217,7 +217,7 @@
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCantidad.Location = new Point(94, 19);
+            lblCantidad.Location = new Point(180, 19);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new Size(18, 20);
             lblCantidad.TabIndex = 1;
@@ -228,9 +228,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(22, 19);
             label1.Name = "label1";
-            label1.Size = new Size(76, 20);
+            label1.Size = new Size(162, 20);
             label1.TabIndex = 0;
-            label1.Text = "Cantidad: ";
+            label1.Text = "Cantidad de registros:  ";
             // 
             // frmDeportes
             // 

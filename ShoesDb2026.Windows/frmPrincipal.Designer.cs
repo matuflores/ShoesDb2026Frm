@@ -184,6 +184,7 @@
             btnMarcas.TabIndex = 0;
             btnMarcas.Text = "Marcas";
             btnMarcas.UseVisualStyleBackColor = true;
+            btnMarcas.Click += btnMarcas_Click;
             // 
             // panel3
             // 

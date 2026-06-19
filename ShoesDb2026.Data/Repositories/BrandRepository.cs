@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Repositories
 {
-    public class BrandRepository : RepositorioGenerico<Brand>, IBrandsRepository
+    public class BrandRepository : RepositorioConcurrente<Brand>, IBrandsRepository
     {
         public BrandRepository(ShoesDb2026DbContext context) : base(context)
         {
