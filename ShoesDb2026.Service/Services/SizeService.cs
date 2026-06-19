@@ -131,6 +131,7 @@ namespace ShoesDb2026.Service.Services
                 return Result.Failure("SIZE NOT FOUND");
             }
             size.SizeNumber = sizeDto.SizeNumber;
+            size.Active = sizeDto.Active;
             size.RowVersion=sizeDto.RowVersion;
 
             if (_uow.Sizes.ExistSameName(size.SizeNumber, size.SizeId))

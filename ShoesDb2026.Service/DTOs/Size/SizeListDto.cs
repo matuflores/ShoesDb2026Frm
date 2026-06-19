@@ -8,6 +8,6 @@ namespace ShoesDb2026.Service.DTOs.Size
     {
         public int SizeId { get; set; }
         public decimal SizeNumber { get; set; }
-        public bool Active { get; set; } = true;
+        public bool Active { get; set; }
     }
 }

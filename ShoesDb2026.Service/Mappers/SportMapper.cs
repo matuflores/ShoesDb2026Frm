@@ -13,7 +13,7 @@ namespace ShoesDb2026.Service.Mappers
             return new Sport
             {
                 SportName = dto.SportName,
-                Active = true
+                Active = dto.Active
             };
         }
 

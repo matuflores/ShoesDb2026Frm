@@ -59,6 +59,7 @@ namespace ShoesDb2026.Windows
 
                         var _tipoCreateDto = new SportCreateDto();
                         _tipoCreateDto.SportName = textBoxDeporte.Text;
+                        _tipoCreateDto.Active = cbActivo.Checked;
                         var resultadoAgregar = _sportService.Add(_tipoCreateDto);
                         if (resultadoAgregar.IsFailure)
                         {

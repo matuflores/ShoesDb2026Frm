@@ -8,6 +8,6 @@ namespace ShoesDb2026.Service.DTOs.Sport
     {
         public int SportId { get; set; }
         public string SportName { get; set; } = null!;
-        public bool Active { get; set; } = true;
+        public bool Active { get; set; } 
     }
 }

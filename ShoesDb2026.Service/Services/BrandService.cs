@@ -127,7 +127,7 @@ namespace ShoesDb2026.Service.Services
             }
             brand.BrandName = brandDto.BrandName;
             brand.ImageUrl = brandDto.ImageUrl;
-            //brand.Active = brandDto.Active;
+            brand.Active = brandDto.Active;
             brand.RowVersion = brandDto.RowVersion;
 
             if (_uow.Brands.ExistSameName(brand.BrandName, brand.BrandId))

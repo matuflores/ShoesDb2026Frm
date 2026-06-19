@@ -60,6 +60,7 @@ namespace ShoesDb2026.Windows
 
                         var _sizeCreateDto = new SizeCreateDto();
                         _sizeCreateDto.SizeNumber = (decimal)nudTalle.Value;
+                        _sizeCreateDto.Active = cbActivo.Checked;
                         var resultadoAgregar = _sizeService.Add(_sizeCreateDto);
                         if (resultadoAgregar.IsFailure)
                         {

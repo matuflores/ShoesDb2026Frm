@@ -9,7 +9,7 @@ namespace ShoesDb2026.Service.DTOs.Brand
         public string BrandName { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
-        public bool Active { get; set; } = true;
+        public bool Active { get; set; }
 
     }
 }

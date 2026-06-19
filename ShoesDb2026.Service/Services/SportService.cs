@@ -126,6 +126,7 @@ namespace ShoesDb2026.Service.Services
                 return Result.Failure("SPORT NOT FOUND");
             }
             sport.SportName = sportDto.SportName;
+            sport.Active=sportDto.Active;
             sport.RowVersion = sportDto.RowVersion;
 
             if (_uow.Sports.ExistSameName(sport.SportName, sport.SportId))

@@ -58,6 +58,7 @@ namespace ShoesDb2026.Windows
 
                         var _brandCreateDto = new BrandCreateDto();
                         _brandCreateDto.BrandName = textBoxMarca.Text;
+                        _brandCreateDto.Active = cbActivo.Checked;
                         _brandCreateDto.ImageUrl = textBoxURLLogo.Text;
                         var resultadoAgregar = _brandService.Add(_brandCreateDto);
                         if (resultadoAgregar.IsFailure)

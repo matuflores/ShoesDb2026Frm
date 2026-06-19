@@ -14,7 +14,7 @@ namespace ShoesDb2026.Service.Mappers
             return new Size
             {
                 SizeNumber = dto.SizeNumber,
-                Active=true
+                Active=dto.Active
             };
         }
         public static SizeListDto ToListDto(Size size)

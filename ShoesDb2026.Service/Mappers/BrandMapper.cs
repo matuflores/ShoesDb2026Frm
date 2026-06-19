@@ -14,7 +14,7 @@ namespace ShoesDb2026.Service.Mappers
             {
                 BrandName = dto.BrandName,
                 ImageUrl = dto.ImageUrl,
-                Active=true
+                Active=dto.Active
             };
         }
         public static BrandListDto ToListDto(Brand brand)
@@ -24,7 +24,7 @@ namespace ShoesDb2026.Service.Mappers
                 BrandId = brand.BrandId,
                 BrandName = brand.BrandName,
                 ImageUrl = brand.ImageUrl,
-                Active=true
+                Active=brand.Active
             };
         }
 
