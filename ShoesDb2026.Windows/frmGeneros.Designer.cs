@@ -32,10 +32,7 @@
             dgvDatos = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
             colNombre = new DataGridViewTextBoxColumn();
-            toolStrip1 = new ToolStrip();
-            tslListaDeGeneros = new ToolStripLabel();
-            toolStripSeparator1 = new ToolStripSeparator();
-            tsbCerrar = new ToolStripButton();
+            btnOff = new Button();
             lblCantidadDeGeneros = new Label();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -43,7 +40,6 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
-            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -56,10 +52,10 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(dgvDatos);
-            splitContainer1.Panel1.Controls.Add(toolStrip1);
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(btnOff);
             splitContainer1.Panel2.Controls.Add(lblCantidadDeGeneros);
             splitContainer1.Panel2.Controls.Add(label1);
             splitContainer1.Size = new Size(548, 283);
@@ -70,14 +66,15 @@
             // 
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.BackgroundColor = Color.White;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colNombre });
             dgvDatos.Dock = DockStyle.Fill;
-            dgvDatos.Location = new Point(0, 67);
+            dgvDatos.Location = new Point(0, 0);
             dgvDatos.Name = "dgvDatos";
             dgvDatos.ReadOnly = true;
             dgvDatos.RowHeadersWidth = 51;
-            dgvDatos.Size = new Size(548, 159);
+            dgvDatos.Size = new Size(548, 226);
             dgvDatos.TabIndex = 1;
             // 
             // colId
@@ -97,37 +94,16 @@
             colNombre.Name = "colNombre";
             colNombre.ReadOnly = true;
             // 
-            // toolStrip1
+            // btnOff
             // 
-            toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tslListaDeGeneros, toolStripSeparator1, tsbCerrar });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(548, 67);
-            toolStrip1.TabIndex = 0;
-            toolStrip1.Text = "toolStrip1";
-            // 
-            // tslListaDeGeneros
-            // 
-            tslListaDeGeneros.Name = "tslListaDeGeneros";
-            tslListaDeGeneros.Size = new Size(159, 64);
-            tslListaDeGeneros.Text = "LISTADO DE GENEROS";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 67);
-            // 
-            // tsbCerrar
-            // 
-            tsbCerrar.Image = Properties.Resources._06CERRAR_40px;
-            tsbCerrar.ImageScaling = ToolStripItemImageScaling.None;
-            tsbCerrar.ImageTransparentColor = Color.Magenta;
-            tsbCerrar.Name = "tsbCerrar";
-            tsbCerrar.Size = new Size(53, 64);
-            tsbCerrar.Text = "Cerrar";
-            tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
-            tsbCerrar.Click += tsbCerrar_Click;
+            btnOff.FlatStyle = FlatStyle.Flat;
+            btnOff.Image = Properties.Resources.off;
+            btnOff.Location = new Point(499, 3);
+            btnOff.Name = "btnOff";
+            btnOff.Size = new Size(46, 47);
+            btnOff.TabIndex = 2;
+            btnOff.UseVisualStyleBackColor = true;
+            btnOff.Click += btnOff_Click;
             // 
             // lblCantidadDeGeneros
             // 
@@ -160,14 +136,11 @@
             Text = "Generos";
             Load += frmGeneros_Load;
             splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -175,13 +148,10 @@
 
         private SplitContainer splitContainer1;
         private DataGridView dgvDatos;
-        private ToolStrip toolStrip1;
-        private ToolStripButton tsbCerrar;
-        private ToolStripLabel tslListaDeGeneros;
-        private ToolStripSeparator toolStripSeparator1;
         private Label lblCantidadDeGeneros;
         private Label label1;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colNombre;
+        private Button btnOff;
     }
 }

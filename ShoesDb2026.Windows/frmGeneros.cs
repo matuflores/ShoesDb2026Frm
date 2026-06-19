@@ -67,8 +67,7 @@ namespace ShoesDb2026.Windows
             }
             lblCantidadDeGeneros.Text = listGenres.Count.ToString();
         }
-
-        private void tsbCerrar_Click(object sender, EventArgs e)
+        private void btnOff_Click(object sender, EventArgs e)
         {
             Close();
         }
