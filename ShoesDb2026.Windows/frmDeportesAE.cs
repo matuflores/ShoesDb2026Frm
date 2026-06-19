@@ -139,7 +139,7 @@ namespace ShoesDb2026.Windows
             }
             return valido;
         }
-
+        //
         public void SetSport(SportUpdateDto? tipoEditDto)
         {
             _sportUpdateDto = tipoEditDto;
