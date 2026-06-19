@@ -38,7 +38,9 @@
             tsbBorrar = new ToolStripButton();
             tsbEditar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            tsbFiltrar = new ToolStripButton();
+            tsbFiltrar = new ToolStripDropDownButton();
+            tsmActivo = new ToolStripMenuItem();
+            tsmNoActivo = new ToolStripMenuItem();
             tsbActualizar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbCerrar = new ToolStripButton();
@@ -142,6 +144,7 @@
             tsbBorrar.Size = new Size(54, 64);
             tsbBorrar.Text = "Borrar";
             tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbBorrar.Click += tsbBorrar_Click;
             // 
             // tsbEditar
             // 
@@ -160,13 +163,28 @@
             // 
             // tsbFiltrar
             // 
+            tsbFiltrar.DropDownItems.AddRange(new ToolStripItem[] { tsmActivo, tsmNoActivo });
             tsbFiltrar.Image = Properties.Resources._04FILTRAR_40px;
             tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             tsbFiltrar.ImageTransparentColor = Color.Magenta;
             tsbFiltrar.Name = "tsbFiltrar";
-            tsbFiltrar.Size = new Size(51, 64);
+            tsbFiltrar.Size = new Size(61, 64);
             tsbFiltrar.Text = "Filtrar";
             tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // tsmActivo
+            // 
+            tsmActivo.Name = "tsmActivo";
+            tsmActivo.Size = new Size(224, 26);
+            tsmActivo.Text = "Activo";
+            tsmActivo.Click += tsmActivo_Click;
+            // 
+            // tsmNoActivo
+            // 
+            tsmNoActivo.Name = "tsmNoActivo";
+            tsmNoActivo.Size = new Size(224, 26);
+            tsmNoActivo.Text = "No Activo";
+            tsmNoActivo.Click += tsmNoActivo_Click;
             // 
             // tsbActualizar
             // 
@@ -177,6 +195,7 @@
             tsbActualizar.Size = new Size(79, 64);
             tsbActualizar.Text = "Actualizar";
             tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbActualizar.Click += tsbActualizar_Click;
             // 
             // toolStripSeparator2
             // 
@@ -244,7 +263,6 @@
         private ToolStripButton tsbBorrar;
         private ToolStripButton tsbEditar;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton tsbFiltrar;
         private ToolStripButton tsbActualizar;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbCerrar;
@@ -253,5 +271,8 @@
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colTalle;
         private DataGridViewCheckBoxColumn colActive;
+        private ToolStripDropDownButton tsbFiltrar;
+        private ToolStripMenuItem tsmActivo;
+        private ToolStripMenuItem tsmNoActivo;
     }
 }

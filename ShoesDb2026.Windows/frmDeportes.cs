@@ -129,6 +129,7 @@ namespace ShoesDb2026.Windows
                     }
                     _listSports = resultadoConsulta.Value;
                     MostrarDatosEnGrilla(_listSports);
+                    lblCantidad.Text = _listSports.Count.ToString();
                     ManejarControles(true);
                 }
                 catch (Exception ex)

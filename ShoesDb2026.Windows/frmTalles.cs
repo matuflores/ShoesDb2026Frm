@@ -73,5 +73,130 @@ namespace ShoesDb2026.Windows
         {
             Close();
         }
+
+        private void tsbActualizar_Click(object sender, EventArgs e)
+        {
+            RecargarGrilla();
+            ManejarControles(false);
+        }
+
+        private void ManejarControles(bool v)
+        {
+            filtroActivo = v;
+            tsbFiltrar.BackColor = filtroActivo ? Color.Orange : SystemColors.Control;
+
+            tsbNuevo.Enabled = !v;
+            tsbEditar.Enabled = !v;
+            tsbBorrar.Enabled = !v;
+        }
+
+        private void tsmActivo_Click(object sender, EventArgs e)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var sizeService = scope.ServiceProvider
+                    .GetRequiredService<ISizeService>();
+                try
+                {
+                    var resultadoConsulta = sizeService.FilterForActive(true);
+                    if (resultadoConsulta.IsFailure)
+                    {
+                        string errores = string.Join("\n", resultadoConsulta.Errors);
+                        MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    _listSizes = resultadoConsulta.Value;
+                    MostrarDatosEnGrilla(_listSizes);
+                    ManejarControles(true);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void tsmNoActivo_Click(object sender, EventArgs e)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var sizeService = scope.ServiceProvider
+                    .GetRequiredService<ISizeService>();
+                try
+                {
+                    var resultadoConsulta = sizeService.FilterForActive(false);
+                    if (resultadoConsulta.IsFailure)
+                    {
+                        string errores = string.Join("\n", resultadoConsulta.Errors);
+                        MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    _listSizes = resultadoConsulta.Value;
+                    MostrarDatosEnGrilla(_listSizes);
+                    lblCantidadTalles.Text = _listSizes.Count.ToString();
+                    ManejarControles(true);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void tsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione el talles a borrar.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            if (filaSeleccionada.Tag is null) return;
+            SizeListDto sizeListDto = (SizeListDto)filaSeleccionada.Tag;
+
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var sizeService = scope.ServiceProvider
+                    .GetRequiredService<ISizeService>();
+
+                var resultadoConsulta = sizeService.GetForDelete(sizeListDto.SizeId);
+                if (resultadoConsulta.IsFailure)
+                {
+                    string errores = string.Join("\n", resultadoConsulta.Errors);
+                    MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var sizeDeleteDto = resultadoConsulta.Value;
+
+                var dr = MessageBox.Show($"¿Confirma que desea eliminar el talles '{sizeListDto.SizeNumber}'?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.No) return;
+
+
+                try
+                {
+                    var resultadoEliminacion = sizeService.Delete(sizeDeleteDto!);
+                    if (resultadoEliminacion.IsFailure)
+                    {
+                        string errores = string.Join("\n", resultadoEliminacion.Errors);
+                        MessageBox.Show(errores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    MessageBox.Show("Talle eliminado exitosamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RecargarGrilla();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
