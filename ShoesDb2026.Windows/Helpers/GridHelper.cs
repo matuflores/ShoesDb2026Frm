@@ -24,7 +24,7 @@ namespace ShoesDb2026.Windows.Helpers
         public static void SetearFila(DataGridViewRow r, object obj)
         {
             switch (obj)
-            {
+            {//aca anule el brandlist BindingSource
                 //case BrandListDto brandDto:
                 //    r.Cells[0].Value = brandDto.BrandId;
                 //    r.Cells[1].Value = brandDto.BrandName;
