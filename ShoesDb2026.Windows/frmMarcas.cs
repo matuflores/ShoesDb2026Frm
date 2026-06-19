@@ -205,5 +205,74 @@ namespace ShoesDb2026.Windows
                 }
             }
         }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                using (frmMarcasAE frm = scope.ServiceProvider.GetRequiredService<frmMarcasAE>())
+                {
+                    frm.Text = "Nueva Marca";
+                    frm.ShowDialog();
+                    if (frm.DataChanged)
+                    {
+                        RecargarGrilla();
+                    }
+
+                }
+            }
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila de la grilla",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            if (filaSeleccionada.Tag is null) return;
+            var brandListDto = (BrandListDto)filaSeleccionada.Tag;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                try
+                {
+                    var brandServices = scope.ServiceProvider
+                .GetRequiredService<IBrandService>();
+                    var resultadoConsulta = brandServices
+                        .GetForUpdate(brandListDto.BrandId);
+                    if (resultadoConsulta.IsFailure)
+                    {
+                        ErrorHelper.MostrarErrores(resultadoConsulta.Errors);
+                        return;
+                    }
+                    var brandEditDto = resultadoConsulta.Value;
+                    using (frmMarcasAE frm = scope.ServiceProvider
+                        .GetRequiredService<frmMarcasAE>())
+                    {
+                        frm.Text = "Editar Marca";
+                        frm.SetBrand(brandEditDto);
+                        frm.ShowDialog();
+                        if (frm.ConcurrencyConflict)
+                        {
+                            RecargarGrilla();
+                        }
+                        if (frm.DataChanged)
+                        {
+                            RecargarGrilla();
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

@@ -198,5 +198,74 @@ namespace ShoesDb2026.Windows
                 }
             }
         }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                using (frmTallesAE frm = scope.ServiceProvider.GetRequiredService<frmTallesAE>())
+                {
+                    frm.Text = "Nuevo Talle";
+                    frm.ShowDialog();
+                    if (frm.DataChanged)
+                    {
+                        RecargarGrilla();
+                    }
+
+                }
+            }
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila de la grilla",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            if (filaSeleccionada.Tag is null) return;
+            var sizeListDto = (SizeListDto)filaSeleccionada.Tag;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                try
+                {
+                    var sizeService = scope.ServiceProvider
+                .GetRequiredService<ISizeService>();
+                    var resultadoConsulta = sizeService
+                        .GetForUpdate(sizeListDto.SizeId);
+                    if (resultadoConsulta.IsFailure)
+                    {
+                        ErrorHelper.MostrarErrores(resultadoConsulta.Errors);
+                        return;
+                    }
+                    var sizeEditDto = resultadoConsulta.Value;
+                    using (frmTallesAE frm = scope.ServiceProvider
+                        .GetRequiredService<frmTallesAE>())
+                    {
+                        frm.Text = "Editar Talle";
+                        frm.SetSize(sizeEditDto);
+                        frm.ShowDialog();
+                        if (frm.ConcurrencyConflict)
+                        {
+                            RecargarGrilla();
+                        }
+                        if (frm.DataChanged)
+                        {
+                            RecargarGrilla();
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

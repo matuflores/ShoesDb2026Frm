@@ -134,6 +134,7 @@
             tsbNuevo.Size = new Size(56, 64);
             tsbNuevo.Text = "Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbNuevo.Click += tsbNuevo_Click;
             // 
             // tsbBorrar
             // 
@@ -155,6 +156,7 @@
             tsbEditar.Size = new Size(52, 64);
             tsbEditar.Text = "Editar";
             tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbEditar.Click += tsbEditar_Click;
             // 
             // toolStripSeparator1
             // 
@@ -175,14 +177,14 @@
             // tsmActivo
             // 
             tsmActivo.Name = "tsmActivo";
-            tsmActivo.Size = new Size(224, 26);
+            tsmActivo.Size = new Size(158, 26);
             tsmActivo.Text = "Activo";
             tsmActivo.Click += tsmActivo_Click;
             // 
             // tsmNoActivo
             // 
             tsmNoActivo.Name = "tsmNoActivo";
-            tsmNoActivo.Size = new Size(224, 26);
+            tsmNoActivo.Size = new Size(158, 26);
             tsmNoActivo.Text = "No Activo";
             tsmNoActivo.Click += tsmNoActivo_Click;
             // 
