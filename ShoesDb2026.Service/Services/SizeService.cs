@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using ShoesDb2026.Data;
 using ShoesDb2026.Entities;
 using ShoesDb2026.Service.Common;
@@ -48,26 +49,47 @@ namespace ShoesDb2026.Service.Services
             }
         }
 
-        public Result Delete(int id)
+        
+
+        public Result Delete(SizeDeleteDto sizeDto)
         {
-            var size = _uow.Sizes.GetById(id);
-            if (size == null)
-            {
-                return Result.Failure("SIZE NOT FOUND");
-            }
-            if (_uow.Sizes.HasShoes(id))
-            {
-                return Result.Failure("SIZE HAS SHOES, CAN'T BE DELETED");
-            }
             try
             {
-                _uow.Sizes.Delete(id);
+                _uow.Sizes.Delete(sizeDto.SizeId,
+                    sizeDto.RowVersion);
                 _uow.Save();
                 return Result.Success();
             }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                _uow.RollBack();
+                return Result.ConcurrencyFailure("Otro usuario ha modificado el deporte.");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                _uow.RollBack();
+                return Result.Failure($"Talla con ID: {sizeDto.SizeId} no encontrada.");
+            }
             catch (Exception ex)
             {
-                return Result.Failure(ex.Message);
+                _uow.RollBack();
+                return Result.Failure($"Error al intentar eliminar la talla: {ex.Message}");
+            }
+        }
+
+        public Result<List<SizeListDto>> FilterForActive(bool active)
+        {
+            try
+            {
+                var query = _uow.Sizes.Query();
+                var list = query.Where(s => s.Active == active);
+                var listDto = list.Select(SizeMapper.ToListDto).ToList();
+                return Result<List<SizeListDto>>.Success(listDto);
+            }
+            catch (Exception ex)
+            {
+
+                return Result<List<SizeListDto>>.Failure($"Error al intentar filtrar las tallas: {ex.Message}");
             }
         }
 
@@ -77,6 +99,17 @@ namespace ShoesDb2026.Service.Services
                 .Select(SizeMapper.ToListDto)
                 .ToList();
             return Result<List<SizeListDto>>.Success(sizes);
+        }
+
+        public Result<SizeDeleteDto> GetForDelete(int id)
+        {
+            var size = _uow.Sizes.GetById(id);
+            if (size == null)
+            {
+                return Result<SizeDeleteDto>.Failure("SIZE NOT FOUND");
+            }
+
+            return Result<SizeDeleteDto>.Success(SizeMapper.ToDeleteDto(size));
         }
 
         public Result<SizeUpdateDto> GetForUpdate(int id)

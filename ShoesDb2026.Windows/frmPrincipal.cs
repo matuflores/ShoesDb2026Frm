@@ -55,5 +55,14 @@ namespace ShoesDb2026.Windows
                 frm.ShowDialog();
             }
         }
+
+        private void btnTalles_Click(object sender, EventArgs e)
+        {
+            using (var frm = _serviceProvider.GetRequiredService<frmTalles>())
+            {
+                frm.Text = "Lista de Talles";
+                frm.ShowDialog();
+            }
+        }
     }
 }

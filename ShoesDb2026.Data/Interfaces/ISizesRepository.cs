@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Interfaces
 {
-    public interface ISizesRepository:IRepositorioGenerico<Size>
+    public interface ISizesRepository:IRepositorioConcurrente<Size>
     {
         bool ExistSameName(decimal sizeNumber, int? sizeId = null);
 

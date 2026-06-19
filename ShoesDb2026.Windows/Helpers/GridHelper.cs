@@ -1,6 +1,7 @@
 ﻿using ShoesDb2026.Entities;
 using ShoesDb2026.Service.DTOs.Brand;
 using ShoesDb2026.Service.DTOs.Genre;
+using ShoesDb2026.Service.DTOs.Size;
 using ShoesDb2026.Service.DTOs.Sport;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,11 @@ namespace ShoesDb2026.Windows.Helpers
                 case GenreListDto genreDto:
                     r.Cells[0].Value = genreDto.GenreId;
                     r.Cells[1].Value = genreDto.GenreName;
+                    break;
+                case SizeListDto sizeDto:
+                    r.Cells[0].Value = sizeDto.SizeId;
+                    r.Cells[1].Value = sizeDto.SizeNumber;
+                    r.Cells[2].Value = sizeDto.Active;
                     break;
             }
 

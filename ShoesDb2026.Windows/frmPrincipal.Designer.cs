@@ -165,6 +165,7 @@
             btnTalles.TabIndex = 2;
             btnTalles.Text = "Talles";
             btnTalles.UseVisualStyleBackColor = true;
+            btnTalles.Click += btnTalles_Click;
             // 
             // btnGeneros
             // 

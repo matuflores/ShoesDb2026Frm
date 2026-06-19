@@ -28,12 +28,230 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmTalles";
+            splitContainer1 = new SplitContainer();
+            dgvDatos = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colTalle = new DataGridViewTextBoxColumn();
+            colActive = new DataGridViewCheckBoxColumn();
+            toolStrip1 = new ToolStrip();
+            tsbNuevo = new ToolStripButton();
+            tsbBorrar = new ToolStripButton();
+            tsbEditar = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            tsbFiltrar = new ToolStripButton();
+            tsbActualizar = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            tsbCerrar = new ToolStripButton();
+            lblCantidadTalles = new Label();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
+            toolStrip1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(dgvDatos);
+            splitContainer1.Panel1.Controls.Add(toolStrip1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(lblCantidadTalles);
+            splitContainer1.Panel2.Controls.Add(label1);
+            splitContainer1.Size = new Size(800, 450);
+            splitContainer1.SplitterDistance = 361;
+            splitContainer1.TabIndex = 0;
+            // 
+            // dgvDatos
+            // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colTalle, colActive });
+            dgvDatos.Dock = DockStyle.Fill;
+            dgvDatos.Location = new Point(0, 67);
+            dgvDatos.MultiSelect = false;
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowHeadersWidth = 51;
+            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDatos.Size = new Size(800, 294);
+            dgvDatos.TabIndex = 0;
+            // 
+            // colId
+            // 
+            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colId.HeaderText = "Id";
+            colId.MinimumWidth = 6;
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Visible = false;
+            // 
+            // colTalle
+            // 
+            colTalle.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTalle.HeaderText = "Talle";
+            colTalle.MinimumWidth = 6;
+            colTalle.Name = "colTalle";
+            colTalle.ReadOnly = true;
+            // 
+            // colActive
+            // 
+            colActive.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colActive.HeaderText = "Activo";
+            colActive.MinimumWidth = 6;
+            colActive.Name = "colActive";
+            colActive.ReadOnly = true;
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.ImageScalingSize = new Size(20, 20);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBorrar, tsbEditar, toolStripSeparator1, tsbFiltrar, tsbActualizar, toolStripSeparator2, tsbCerrar });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(800, 67);
+            toolStrip1.TabIndex = 0;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbNuevo
+            // 
+            tsbNuevo.Image = Properties.Resources._01AGREGAR_40px;
+            tsbNuevo.ImageScaling = ToolStripItemImageScaling.None;
+            tsbNuevo.ImageTransparentColor = Color.Magenta;
+            tsbNuevo.Name = "tsbNuevo";
+            tsbNuevo.Size = new Size(56, 64);
+            tsbNuevo.Text = "Nuevo";
+            tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // tsbBorrar
+            // 
+            tsbBorrar.Image = Properties.Resources._02BORRAR_40px;
+            tsbBorrar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbBorrar.ImageTransparentColor = Color.Magenta;
+            tsbBorrar.Name = "tsbBorrar";
+            tsbBorrar.Size = new Size(54, 64);
+            tsbBorrar.Text = "Borrar";
+            tsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // tsbEditar
+            // 
+            tsbEditar.Image = Properties.Resources._03EDITAR_40px;
+            tsbEditar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbEditar.ImageTransparentColor = Color.Magenta;
+            tsbEditar.Name = "tsbEditar";
+            tsbEditar.Size = new Size(52, 64);
+            tsbEditar.Text = "Editar";
+            tsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 67);
+            // 
+            // tsbFiltrar
+            // 
+            tsbFiltrar.Image = Properties.Resources._04FILTRAR_40px;
+            tsbFiltrar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbFiltrar.ImageTransparentColor = Color.Magenta;
+            tsbFiltrar.Name = "tsbFiltrar";
+            tsbFiltrar.Size = new Size(51, 64);
+            tsbFiltrar.Text = "Filtrar";
+            tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // tsbActualizar
+            // 
+            tsbActualizar.Image = Properties.Resources._05REFRESH_40px;
+            tsbActualizar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbActualizar.ImageTransparentColor = Color.Magenta;
+            tsbActualizar.Name = "tsbActualizar";
+            tsbActualizar.Size = new Size(79, 64);
+            tsbActualizar.Text = "Actualizar";
+            tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 67);
+            // 
+            // tsbCerrar
+            // 
+            tsbCerrar.Image = Properties.Resources._06CERRAR_40px;
+            tsbCerrar.ImageScaling = ToolStripItemImageScaling.None;
+            tsbCerrar.ImageTransparentColor = Color.Magenta;
+            tsbCerrar.Name = "tsbCerrar";
+            tsbCerrar.Size = new Size(53, 64);
+            tsbCerrar.Text = "Cerrar";
+            tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbCerrar.Click += tsbCerrar_Click;
+            // 
+            // lblCantidadTalles
+            // 
+            lblCantidadTalles.AutoSize = true;
+            lblCantidadTalles.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidadTalles.Location = new Point(203, 31);
+            lblCantidadTalles.Name = "lblCantidadTalles";
+            lblCantidadTalles.Size = new Size(18, 20);
+            lblCantidadTalles.TabIndex = 1;
+            lblCantidadTalles.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(39, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(158, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Cantidad de registros: ";
+            // 
+            // frmTalles
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(splitContainer1);
+            Name = "frmTalles";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "frmTalles";
+            Load += frmTalles_Load;
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private SplitContainer splitContainer1;
+        private DataGridView dgvDatos;
+        private ToolStrip toolStrip1;
+        private ToolStripButton tsbNuevo;
+        private ToolStripButton tsbBorrar;
+        private ToolStripButton tsbEditar;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton tsbFiltrar;
+        private ToolStripButton tsbActualizar;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton tsbCerrar;
+        private Label lblCantidadTalles;
+        private Label label1;
+        private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn colTalle;
+        private DataGridViewCheckBoxColumn colActive;
     }
 }

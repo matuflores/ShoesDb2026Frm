@@ -11,9 +11,12 @@ namespace ShoesDb2026.Service.Interfaces
     {
         Result<List<SizeListDto>> GetAll();
         Result<SizeUpdateDto> GetForUpdate(int id);
+        Result<SizeDeleteDto> GetForDelete(int id);
 
         Result Add(SizeCreateDto sizeDto);
         Result Update(SizeUpdateDto sizeDto);
-        Result Delete(int id);
+        Result Delete(SizeDeleteDto sizeDto);
+
+        Result<List<SizeListDto>> FilterForActive(bool active);
     }
 }

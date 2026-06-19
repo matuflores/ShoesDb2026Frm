@@ -13,7 +13,8 @@ namespace ShoesDb2026.Service.Mappers
         {
             return new Size
             {
-                SizeNumber = dto.SizeNumber
+                SizeNumber = dto.SizeNumber,
+                Active=true
             };
         }
         public static SizeListDto ToListDto(Size size)
@@ -21,7 +22,8 @@ namespace ShoesDb2026.Service.Mappers
             return new SizeListDto
             {
                 SizeId = size.SizeId,
-                SizeNumber = size.SizeNumber
+                SizeNumber = size.SizeNumber,
+                Active=size.Active
             };
         }
         public static SizeUpdateDto ToUpdateDto(Size size)
@@ -30,6 +32,16 @@ namespace ShoesDb2026.Service.Mappers
             {
                 SizeId = size.SizeId,
                 SizeNumber = size.SizeNumber,
+                Active = size.Active,
+                RowVersion = size.RowVersion
+            };
+        }
+
+        public static SizeDeleteDto ToDeleteDto(Size size)
+        {
+            return new SizeDeleteDto
+            {
+                SizeId = size.SizeId,
                 RowVersion = size.RowVersion
             };
         }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ShoesDb2026.Data.Repositories
 {
-    public class SizeRepository :RepositorioGenerico<Size>, ISizesRepository
+    public class SizeRepository :RepositorioConcurrente<Size>, ISizesRepository
     {
         public SizeRepository(ShoesDb2026DbContext context) : base(context)
         {

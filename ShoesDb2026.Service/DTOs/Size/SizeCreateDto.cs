@@ -7,5 +7,6 @@ namespace ShoesDb2026.Service.DTOs.Size
     public class SizeCreateDto
     {
         public decimal SizeNumber { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -4,10 +4,9 @@ using System.Text;
 
 namespace ShoesDb2026.Service.DTOs.Size
 {
-    public class SizeListDto
+    public class SizeDeleteDto
     {
         public int SizeId { get; set; }
-        public decimal SizeNumber { get; set; }
-        public bool Active { get; set; } = true;
+        public byte[] RowVersion { get; set; } = null!;
     }
 }
