@@ -133,13 +133,13 @@ namespace ShoesDb2026.Windows
             if (string.IsNullOrEmpty(textBoxDeporte.Text))
             {
                 valido = false;
-                errorProvider1.SetError(textBoxDeporte, "El nombre de la marca es requerido");
+                errorProvider1.SetError(textBoxDeporte, "El nombre del deporte es requerido");
 
             }
             return valido;
         }
 
-        public void SetTipo(SportUpdateDto? tipoEditDto)
+        public void SetSport(SportUpdateDto? tipoEditDto)
         {
             _sportUpdateDto = tipoEditDto;
         }

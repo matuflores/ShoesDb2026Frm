@@ -223,5 +223,57 @@ namespace ShoesDb2026.Windows
                 }
             }
         }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila de la grilla",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            if (filaSeleccionada.Tag is null) return;
+            var tipoListDto = (SportListDto)filaSeleccionada.Tag;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                try
+                {
+                    var sportService = scope.ServiceProvider
+                .GetRequiredService<ISportService>();
+                    var resultadoConsulta = sportService
+                        .GetForUpdate(tipoListDto.SportId);
+                    if (resultadoConsulta.IsFailure)
+                    {
+                        ErrorHelper.MostrarErrores(resultadoConsulta.Errors);
+                        return;
+                    }
+                    var tipoEditDto = resultadoConsulta.Value;
+                    using (frmDeportesAE frm = scope.ServiceProvider
+                        .GetRequiredService<frmDeportesAE>())
+                    {
+                        frm.Text = "Editar Deporte";
+                        frm.SetSport(tipoEditDto);
+                        frm.ShowDialog();
+                        if (frm.ConcurrencyConflict)//si hubo concurrencia se recarga la grilla
+                        {
+                            RecargarGrilla();
+                        }
+                        if (frm.DataChanged)//si cambiaron los datos se recarga la grilla
+                        {
+                            RecargarGrilla();
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
