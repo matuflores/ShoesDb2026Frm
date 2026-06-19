@@ -158,7 +158,7 @@ namespace ShoesDb2026.Windows
             var filaSeleccionada = dgvDatos.SelectedRows[0];
             if (filaSeleccionada.Tag is null) return;
             SportListDto sportListDto = (SportListDto)filaSeleccionada.Tag;
-            
+
             using (var scope = _serviceProvider.CreateScope())
             {
                 var sportService = scope.ServiceProvider
@@ -177,10 +177,10 @@ namespace ShoesDb2026.Windows
                 "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.No) return;
 
-                
+
                 try
                 {
-                    var resultadoEliminacion =sportService.Delete(sportDeleteDto!);
+                    var resultadoEliminacion = sportService.Delete(sportDeleteDto!);
                     if (resultadoEliminacion.IsFailure)
                     {
                         string errores = string.Join("\n", resultadoEliminacion.Errors);
@@ -203,6 +203,23 @@ namespace ShoesDb2026.Windows
                 {
 
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void tsbNuevo_Click(object sender, EventArgs e)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                using (frmDeportesAE frm = scope.ServiceProvider.GetRequiredService<frmDeportesAE>())
+                {
+                    frm.Text = "Nuevo Deporte";
+                    frm.ShowDialog();
+                    if (frm.DataChanged)
+                    {
+                        RecargarGrilla();
+                    }
+
                 }
             }
         }
